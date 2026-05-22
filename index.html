@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simón Francisco Nuñez — Digital Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #1A2D4A;
+    --accent: #E8B86D;
+    --accent-light: #F5D49A;
+    --white: #F8F6F1;
+    --text: #1C2A3A;
+    --text-muted: #6B7C8D;
+    --border: rgba(26,45,74,0.12);
+    --card-bg: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(248,246,241,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.5px;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; text-decoration: none;
+    color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.2px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+
+  /* ─── HERO ────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -100px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,184,109,0.08) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,184,109,0.12); border: 1px solid rgba(232,184,109,0.3);
+    color: var(--accent); font-size: 12px; font-weight: 500;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 900; line-height: 1.0;
+    color: var(--white); margin-bottom: 24px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px; font-weight: 300; color: rgba(248,246,241,0.6);
+    max-width: 520px; margin-bottom: 48px; line-height: 1.7;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 72px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: var(--navy);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    padding: 14px 28px; border-radius: 6px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(248,246,241,0.2); color: var(--white);
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    padding: 14px 28px; border-radius: 6px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); background: rgba(232,184,109,0.05); }
+
+  .hero-stats {
+    display: flex; gap: 48px; border-top: 1px solid rgba(248,246,241,0.08);
+    padding-top: 40px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: var(--accent);
+    display: block; line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: rgba(248,246,241,0.45); text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+
+  /* ─── SECTION BASE ────────────────────────────────── */
+  section { padding: 100px 48px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--accent); margin-bottom: 16px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--accent);
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px); font-weight: 700;
+    color: var(--navy); line-height: 1.15; margin-bottom: 60px;
+  }
+
+  /* ─── ABOUT ───────────────────────────────────────── */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about-text p {
+    font-size: 17px; line-height: 1.8; color: #3A4A5A; margin-bottom: 20px;
+  }
+  .about-highlights { display: flex; flex-direction: column; gap: 20px; }
+  .highlight-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px; border-radius: 0 8px 8px 0;
+  }
+  .highlight-card strong { display: block; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .highlight-card span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ─── SKILLS ──────────────────────────────────────── */
+  #skills { background: var(--navy); }
+  #skills .section-title { color: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 28px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .skill-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(232,184,109,0.25); }
+  .skill-icon {
+    width: 44px; height: 44px; background: rgba(232,184,109,0.12);
+    border: 1px solid rgba(232,184,109,0.2);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 18px;
+  }
+  .skill-card h3 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-size: 12px; color: rgba(248,246,241,0.5);
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ─── EXPERIENCE ──────────────────────────────────── */
+  #experience { background: #F3F0E8; }
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 40px; padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-size: 13px; color: var(--text-muted); font-weight: 500; padding-top: 4px; }
+  .exp-badge {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--accent);
+    background: rgba(232,184,109,0.12); border: 1px solid rgba(232,184,109,0.25);
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 10px;
+  }
+  .exp-title { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .exp-company { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .exp-bullets li {
+    font-size: 15px; color: #3A4A5A; line-height: 1.6;
+    padding-left: 16px; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 12px; top: 3px;
+  }
+
+  /* ─── TOOLS ───────────────────────────────────────── */
+  #tools { background: var(--white); }
+  .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tool-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px 20px; text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .tool-icon-wrap {
+    width: 48px; height: 48px; margin: 0 auto 12px;
+    background: linear-gradient(135deg, #1A2D4A 0%, #0A1628 100%);
+    border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; font-size: 22px;
+  }
+  .tool-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .tool-type { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ─── CONTACT ─────────────────────────────────────── */
+  #contact {
+    background: var(--navy);
+    text-align: center;
+  }
+  #contact .section-title { color: var(--white); margin-bottom: 16px; }
+  .contact-sub { font-size: 17px; color: rgba(248,246,241,0.5); margin-bottom: 48px; }
+  .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500;
+    padding: 14px 24px; border-radius: 8px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { background: rgba(232,184,109,0.1); border-color: rgba(232,184,109,0.35); }
+  .contact-link svg { width: 18px; height: 18px; opacity: 0.7; }
+
+  /* ─── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: #06101F; padding: 24px 48px;
+    text-align: center; font-size: 13px; color: rgba(248,246,241,0.2);
+  }
+
+  /* ─── ANIMATIONS ──────────────────────────────────── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    .hero { padding: 100px 24px 72px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .hero-stats { flex-wrap: wrap; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S. F. Nuñez</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Available for remote work</div>
+    <h1>Simón<br><span>Francisco</span><br>Nuñez</h1>
+    <p class="hero-subtitle">Digital Marketing Specialist focused on Paid Media, performance campaigns, and data-driven growth. Based in Córdoba, Argentina — working globally.</p>
+    <div class="hero-ctas">
+      <a href="mailto:simonnuniez@gmail.com" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Get in touch
+      </a>
+      <a href="https://www.linkedin.com/in/simon-francisco-nunez" target="_blank" class="btn-outline">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Years in digital marketing</span>
+      </div>
+      <div>
+        <span class="stat-num">281K+</span>
+        <span class="stat-label">Ad impressions managed</span>
+      </div>
+      <div>
+        <span class="stat-num">1,145+</span>
+        <span class="stat-label">Conversions generated</span>
+      </div>
+      <div>
+        <span class="stat-num">B2/C1</span>
+        <span class="stat-label">English proficiency</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About me</div>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I'm a Licensed Marketing professional with a strong focus on <strong>Paid Media and performance marketing</strong>. I specialize in planning, executing, and optimizing campaigns on Meta Ads and Google Ads using metrics-driven decisions.</p>
+        <p>My analytical background allows me to understand conversion funnels, identify optimization opportunities, and consistently improve KPIs like ROAS, CPA, and conversion rates. I'm comfortable working in fast-paced, remote environments with cross-functional teams.</p>
+        <p>I hold a B2/C1 level in English, which allows me to collaborate fluently with international teams and clients, making me well-suited for global remote positions.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <strong>🎯 Performance-first mindset</strong>
+          <span>Every campaign decision is backed by data — from audience segmentation to bid strategy and creative testing.</span>
+        </div>
+        <div class="highlight-card">
+          <strong>📊 KPI-driven analysis</strong>
+          <span>Deep comfort with ROAS, CPA, CTR, CPC, and conversion rate optimization across different campaign objectives.</span>
+        </div>
+        <div class="highlight-card">
+          <strong>🌐 Remote-ready</strong>
+          <span>Experienced working asynchronously with distributed teams, with professional English communication skills.</span>
+        </div>
+        <div class="highlight-card">
+          <strong>🎓 Formal marketing background</strong>
+          <span>Licenciatura en Comercialización y Marketing — Universidad Empresarial Siglo 21, 2025.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Competencies</div>
+    <h2 class="section-title">What I bring to the table</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📢</div>
+        <h3>Paid Media</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Meta Ads</span>
+          <span class="skill-tag">Google Ads</span>
+          <span class="skill-tag">Campaign Setup</span>
+          <span class="skill-tag">Bid Strategy</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📈</div>
+        <h3>Performance Analysis</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ROAS</span>
+          <span class="skill-tag">CPA</span>
+          <span class="skill-tag">CTR/CPC</span>
+          <span class="skill-tag">KPI Reporting</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🎯</div>
+        <h3>Audience Strategy</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Segmentation</span>
+          <span class="skill-tag">Lookalike Audiences</span>
+          <span class="skill-tag">Retargeting</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🧪</div>
+        <h3>Testing & Optimization</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">A/B Testing</span>
+          <span class="skill-tag">Creative Testing</span>
+          <span class="skill-tag">Funnel Optimization</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📧</div>
+        <h3>Lead Generation</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">B2B Lead Gen</span>
+          <span class="skill-tag">Email Marketing</span>
+          <span class="skill-tag">Outreach Sequences</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🔍</div>
+        <h3>Digital Strategy</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Conversion Funnels</span>
+          <span class="skill-tag">Customer Acquisition</span>
+          <span class="skill-tag">Retention</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career history</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">
+          <span>2023 – 2026</span>
+        </div>
+        <div>
+          <span class="exp-badge">ONG / Nonprofit</span>
+          <div class="exp-title">Marketing Digital y Comunicación</div>
+          <div class="exp-company">Por Igual Más — Córdoba, Argentina</div>
+          <ul class="exp-bullets">
+            <li>Managed Google Ads campaigns generating <strong>1,145+ conversions</strong> and <strong>281,000+ impressions</strong> over 12 months, with a CPA of USD 12.52 on a total managed budget of USD 14,300+.</li>
+            <li>Scaled campaign conversions from 21 to 307 in 5 months — a <strong>14x increase</strong> — through continuous A/B testing, audience refinement, and bid strategy optimization.</li>
+            <li>Grew monthly ad spend from ~USD 311 to ~USD 2,776 (<strong>8.9x scale</strong>) while maintaining CPA under USD 10 during peak performance phase.</li>
+            <li>Achieved <strong>2.42% CTR</strong> across campaigns and <strong>41.67% CTR</strong> on branded keyword "Por Igual Más", indicating strong brand recognition.</li>
+            <li>Identified highest-converting audience segment — women aged 45–54 (26% of total conversions) — enabling more efficient budget allocation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">
+          <span>Sep – Nov 2025</span>
+        </div>
+        <div>
+          <span class="exp-badge">Remote Internship</span>
+          <div class="exp-title">Email Marketing Intern</div>
+          <div class="exp-company">GAO Tek Inc. — Remote (International)</div>
+          <ul class="exp-bullets">
+            <li>Generated B2B leads and managed outreach sequences for prospective international clients.</li>
+            <li>Supported digital prospecting strategies and maintained communication workflows with potential users.</li>
+            <li>Contributed to campaign reporting and analysis to assess engagement rates and optimize outreach copy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">
+          <span>2022</span>
+        </div>
+        <div>
+          <span class="exp-badge">Contract</span>
+          <div class="exp-title">Project Auditor</div>
+          <div class="exp-company">Programa Procrear — UTN Tierra del Fuego, Argentina</div>
+          <ul class="exp-bullets">
+            <li>Collected, analyzed, and reported project performance data for government housing program stakeholders.</li>
+            <li>Prepared executive-level reports and coordinated with multidisciplinary teams to track milestone progress.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="section-label">Tech stack</div>
+    <h2 class="section-title">Tools & Platforms</h2>
+    <div class="tools-grid">
+      <div class="tool-card fade-in">
+        <div class="tool-icon-wrap">📘</div>
+        <div class="tool-name">Meta Business Manager</div>
+        <div class="tool-type">Ads & Analytics</div>
+      </div>
+      <div class="tool-card fade-in">
+        <div class="tool-icon-wrap">🔍</div>
+        <div class="tool-name">Google Ads</div>
+        <div class="tool-type">Search & Display</div>
+      </div>
+      <div class="tool-card fade-in">
+        <div class="tool-icon-wrap">📊</div>
+        <div class="tool-name">Google Analytics 4</div>
+        <div class="tool-type">Web Analytics</div>
+      </div>
+      <div class="tool-card fade-in">
+        <div class="tool-icon-wrap">📗</div>
+        <div class="tool-name">Microsoft Excel</div>
+        <div class="tool-type">Data & Reporting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label" style="justify-content: center;">Get in touch</div>
+    <h2 class="section-title">Open to remote opportunities</h2>
+    <p class="contact-sub">Looking for performance marketing, paid media, or digital strategy roles — globally.</p>
+    <div class="contact-links">
+      <a href="mailto:simonnuniez@gmail.com" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        simonnuniez@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/simon-francisco-nunez" target="_blank" class="contact-link">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="tel:+5429015064" class="contact-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +54 2901 506415
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Simón Francisco Nuñez · Córdoba, Argentina · Open to remote work worldwide</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
